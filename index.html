@@ -161,8 +161,31 @@ var init = function () {
     var textAlpha = 0;
     var textPulse = 0;
     
+    // Vibration for heartbeat
+    var lastBeat = 0;
+    var canVibrate = mobile && navigator.vibrate;
+    
     var loop = function () {
         var scale = heartbeat(time);
+        
+        // Trigger vibration on heartbeat peaks
+        if (canVibrate) {
+            var cycle = time % 1.0;
+            // First beat (lub)
+            if (cycle >= 0.05 && cycle < 0.07 && lastBeat !== 1) {
+                navigator.vibrate(30);
+                lastBeat = 1;
+            }
+            // Second beat (dub)
+            else if (cycle >= 0.18 && cycle < 0.20 && lastBeat !== 2) {
+                navigator.vibrate(20);
+                lastBeat = 2;
+            }
+            // Reset for next cycle
+            else if (cycle >= 0.5) {
+                lastBeat = 0;
+            }
+        }
         
         smoothAngle += (rotationAngle - smoothAngle) * 0.05;
         
