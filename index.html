@@ -230,17 +230,17 @@ var init = function () {
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         
-        // Red glow layers (matching heart color) - 10% opacity
+        // Red glow layers (matching heart color) - increased glow
         for (var g = 4; g >= 0; g--) {
-            ctx.shadowColor = 'rgba(255, 0, 0, 0.1)';
-            ctx.shadowBlur = 25 + g * 8;
-            ctx.fillStyle = 'rgba(180, 0, 0, ' + (0.02 * textAlpha) + ')';
+            ctx.shadowColor = 'rgba(255, 0, 0, 0.5)';
+            ctx.shadowBlur = 30 + g * 12;
+            ctx.fillStyle = 'rgba(180, 0, 0, ' + (0.08 * textAlpha) + ')';
             ctx.fillText('G. E.', 0, 0);
         }
         
-        // Main text - black with red glow (10% opacity)
-        ctx.shadowColor = 'rgba(255, 0, 0, 0.1)';
-        ctx.shadowBlur = 20;
+        // Main text - black with red glow
+        ctx.shadowColor = 'rgba(255, 0, 0, 0.5)';
+        ctx.shadowBlur = 25;
         ctx.fillStyle = 'rgba(0, 0, 0, ' + textAlpha + ')';
         ctx.fillText('G. E.', 0, 0);
         
